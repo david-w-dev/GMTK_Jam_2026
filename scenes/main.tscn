@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://dpr25p0pbijeq"]
 
 [ext_resource type="PackedScene" uid="uid://dys0os1sf1ys8" path="res://scenes/player.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://gwqjph14tr41" path="res://scripts/main.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://b4yorohadmnh" path="res://scenes/level.tscn" id="2_0wfyh"]
+[ext_resource type="Script" uid="uid://cvhx1v52e8234" path="res://scripts/enemy_spawner.gd" id="3_sugp2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -15,6 +17,7 @@ background_mode = 2
 sky = SubResource("Sky_0xm2m")
 
 [node name="main" type="Node3D" unique_id=907800234]
+script = ExtResource("1_jyhfs")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=720583688]
 environment = SubResource("Environment_h2yge")
@@ -27,3 +30,6 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.335372, 0)
 
 [node name="Level" parent="." unique_id=1775775608 instance=ExtResource("2_0wfyh")]
+
+[node name="Enemy Spawner" type="Node3D" parent="." unique_id=1221274126]
+script = ExtResource("3_sugp2")
