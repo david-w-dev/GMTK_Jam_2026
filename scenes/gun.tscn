@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://fnhljqdgqxtq"]
+
+[ext_resource type="Script" uid="uid://l3ybsiu4oepl" path="res://scripts/gun.gd" id="1_x77fm"]
+[ext_resource type="Texture2D" uid="uid://dvn1h48pueh8r" path="res://images/crosshair.png" id="2_og67c"]
+
+[node name="gun" type="Node3D" unique_id=1944798131]
+script = ExtResource("1_x77fm")
+
+[node name="crosshair" type="Sprite2D" parent="." unique_id=969309031]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_og67c")
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1592094184]
+target_position = Vector3(0, 0, -100)
+collision_mask = 6

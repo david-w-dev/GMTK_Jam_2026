@@ -2,12 +2,15 @@
 
 [ext_resource type="Script" uid="uid://pgqo0fqoxqqs" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="PackedScene" uid="uid://6auf6d4rpou4" path="res://scenes/sword.tscn" id="2_g2els"]
+[ext_resource type="PackedScene" uid="uid://fnhljqdgqxtq" path="res://scenes/gun.tscn" id="3_qhqgy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_auouy"]
 
 [node name="player" type="CharacterBody3D" unique_id=473150346]
+collision_layer = 8
+collision_mask = 4
 script = ExtResource("1_3vyb7")
-movement_speed = 50
+movement_speed = 15
 jump_speed = 5
 mouse_sensitivity = 0.005
 
@@ -15,8 +18,17 @@ mouse_sensitivity = 0.005
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_auouy")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1603516755]
+[node name="Head" type="Node3D" parent="." unique_id=1645541830]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 
-[node name="sword" parent="." unique_id=1032782066 instance=ExtResource("2_g2els")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -1)
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1603516755]
+
+[node name="weapons" type="Node3D" parent="Head" unique_id=1762543175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+
+[node name="gun" parent="Head/weapons" unique_id=1944798131 instance=ExtResource("3_qhqgy")]
+
+[node name="sword" parent="Head/weapons" unique_id=1032782066 instance=ExtResource("2_g2els")]
+
+[connection signal="shot_enemy" from="Head/weapons/gun" to="." method="_on_gun_shot_enemy"]
+[connection signal="hit_enemy" from="Head/weapons/sword" to="." method="_on_sword_hit_enemy"]

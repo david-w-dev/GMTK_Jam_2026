@@ -33,3 +33,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.335372, 0)
 
 [node name="Enemy Spawner" type="Node3D" parent="." unique_id=1221274126]
 script = ExtResource("3_sugp2")
+spawn_range = 15.0
+
+[connection signal="killed_enemy" from="player" to="." method="_on_player_killed_enemy"]

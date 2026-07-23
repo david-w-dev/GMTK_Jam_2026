@@ -1,14 +1,32 @@
 [gd_scene format=3 uid="uid://6auf6d4rpou4"]
 
+[ext_resource type="Script" uid="uid://br2kwpih5v3w4" path="res://scripts/sword.gd" id="1_ycbs3"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_ej6i0"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_auouy"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycbs3"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n355p"]
+size = Vector3(0.3, 0.2626953, 1.3000001)
 
 [node name="sword" type="Area3D" unique_id=1032782066]
+collision_mask = 2
+script = ExtResource("1_ycbs3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1326302623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 shape = SubResource("BoxShape3D_ej6i0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=717796710]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.32769188, -1)
+material_override = SubResource("StandardMaterial3D_ycbs3")
 cast_shadow = 0
-mesh = SubResource("BoxMesh_auouy")
+mesh = SubResource("BoxMesh_n355p")
+
+[node name="Timer" type="Timer" parent="." unique_id=1066628266]
+wait_time = 0.25
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

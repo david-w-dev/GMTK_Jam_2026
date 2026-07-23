@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://drs1f5ca0o123"]
+
+[ext_resource type="Script" uid="uid://bd23gbqr2tsoy" path="res://scripts/light_panel.gd" id="1_wxc7p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_efbxx"]
+size = Vector3(1.2, 2.8, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6k1vx"]
+size = Vector3(1.2, 2.8, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxc7p"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mmbss"]
+albedo_color = Color(0.70380783, 0.70380783, 0.70380783, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_atmo0"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[node name="light_panel" type="Node3D" unique_id=605924003]
+script = ExtResource("1_wxc7p")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=971961913]
+collision_layer = 5
+collision_mask = 9
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2061855299]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_efbxx")
+
+[node name="panel_on" type="MeshInstance3D" parent="StaticBody3D" unique_id=1549249077]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("BoxMesh_6k1vx")
+surface_material_override/0 = SubResource("StandardMaterial3D_wxc7p")
+
+[node name="panel_off" type="MeshInstance3D" parent="StaticBody3D" unique_id=1084544193]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+visible = false
+mesh = SubResource("BoxMesh_6k1vx")
+surface_material_override/0 = SubResource("StandardMaterial3D_mmbss")
+
+[node name="panel_dim" type="MeshInstance3D" parent="StaticBody3D" unique_id=1052950707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+visible = false
+mesh = SubResource("BoxMesh_6k1vx")
+surface_material_override/0 = SubResource("StandardMaterial3D_atmo0")
