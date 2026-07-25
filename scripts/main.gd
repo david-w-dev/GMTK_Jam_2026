@@ -52,7 +52,7 @@ func _on_menu_start_game() -> void:
 
 # Helper function for win/lose states
 func show_post_game_screen(won: bool) -> void:
-	end_screen.set_text("well done :)" if won else "you lost :()")
+	end_screen.set_text("well done :)" if won else "you lost :(")
 	add_child(end_screen)
 
 func _on_won_state_entered() -> void:

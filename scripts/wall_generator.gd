@@ -8,6 +8,9 @@ const WALL_CIRCLE_SIZE: float = 0.75
 ## The width of the wall scene in 3D space
 const WALL_MODEL_WIDTH: float = 4.0
 
+## The height of the wall scene in 3D space
+const WALL_MODEL_HEIGHT: float = 4.0
+
 ## The desired width of the walls in 3D space as they  will appear to the player.
 ## The wall scene is scaled to meet this size. Together with the panel circle
 ## radius, this determines the grid size
@@ -67,11 +70,11 @@ static func get_random_walls() -> Array[WallPosition]:
 					wall_positions.append(WallPosition.new(cell, o, h))
 	return wall_positions
 
-static func set_wall_position(wall: Node, pos: WallPosition) -> void:
+static func set_wall_position(wall: Node, pos: WallPosition, y: float) -> void:
 	var offset = Vector2(CELL_SIZE / 2, 0) if pos.orientation == Orientation.NORTH_SOUTH \
 				 else Vector2(0, CELL_SIZE / 2)
 	var pos2d = NW_CORNER + CELL_SIZE * (Vector2(pos.cell) + Vector2(0.5, 0.5)) + offset
-	wall.position = Vector3(pos2d.x, 0, pos2d.y)
+	wall.position = Vector3(pos2d.x, y, pos2d.y)
 	wall.scale.x = SCALE
 	wall.scale.y = pos.height
 	wall.rotation.y = PI / 2 if pos.orientation == Orientation.NORTH_SOUTH else 0.0

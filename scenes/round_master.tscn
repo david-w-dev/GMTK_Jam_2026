@@ -6,6 +6,7 @@
 
 [node name="RoundMaster" type="Node3D" unique_id=1251060153]
 script = ExtResource("1_7o74w")
+wall_rise_speed = 2.0
 wall_scene = ExtResource("2_ynj3r")
 
 [node name="tick_timer" type="Timer" parent="." unique_id=1653422239]

@@ -4,6 +4,7 @@ class_name RoundMaster
 enum RoundOutcome { WON, LOST }
 signal round_ended(outcome: RoundOutcome)
 
+@export var wall_rise_speed: float = 1.0
 @export var wall_scene: PackedScene
 
 
@@ -25,6 +26,7 @@ var in_progress = true
 var params: Params = null
 var ticks_remaining: int
 var enemies_remaining: int
+var wall_y: float = -WallGenerator.WALL_MODEL_HEIGHT
 
 
 func setup(p: Params) -> void:
@@ -49,13 +51,14 @@ func _ready() -> void:
 	for pos in WallGenerator.get_random_walls():
 		var wall = wall_scene.instantiate()
 		add_child(wall)
-		WallGenerator.set_wall_position(wall, pos)
+		WallGenerator.set_wall_position(wall, pos, wall_y)
 
 	set_mock_hud()
-	$tick_timer.start(params.tick_duration_s)
+
+func spawn_enemies():
 	for i in range(params.num_enemies):
 		add_child($spawner.spawn_enemy())
-
+	$tick_timer.start(params.tick_duration_s)
 
 func set_mock_hud() -> void:
 	# Note: this HUD is just for debug and testing
@@ -63,8 +66,17 @@ func set_mock_hud() -> void:
 						% [params.round_number, ticks_remaining, enemies_remaining]
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	if wall_y < 0:
+		wall_y = min(0, wall_y + wall_rise_speed * delta)
+		# TODO: if this gets more complicated, use a start chart. For now that would
+		# be overkill
+		if wall_y == 0:
+			spawn_enemies()
+
 	for child in get_children():
+		if child is Wall:
+			child.position.y = wall_y
 		if child is Enemy:
 			child.run_towards(params.player.global_position)
 

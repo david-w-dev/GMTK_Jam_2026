@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://6e4n7ylmgaet"]
 
+[ext_resource type="Script" uid="uid://cwc1fpdcqlivv" path="res://scripts/wall.gd" id="1_wykyb"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_efbxx"]
 size = Vector3(4, 4, 0.1)
 
@@ -7,6 +9,7 @@ size = Vector3(4, 4, 0.1)
 size = Vector3(4, 4, 0.1)
 
 [node name="Wall" type="Node3D" unique_id=605924003]
+script = ExtResource("1_wykyb")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=971961913]
 collision_layer = 5

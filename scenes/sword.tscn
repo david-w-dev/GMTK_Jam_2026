@@ -10,6 +10,12 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_n355p"]
 size = Vector3(0.3, 0.2626953, 1.3000001)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n355p"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s4ec8"]
+size = Vector3(0.3, 0.4, 1.1551758)
+
 [node name="sword" type="Area3D" unique_id=1032782066]
 collision_mask = 6
 script = ExtResource("1_ycbs3")
@@ -27,6 +33,12 @@ mesh = SubResource("BoxMesh_n355p")
 [node name="Timer" type="Timer" parent="." unique_id=1066628266]
 wait_time = 0.25
 one_shot = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=869956743]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5345932, -0.037510842, -1.1561077)
+material_override = SubResource("StandardMaterial3D_n355p")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_s4ec8")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
