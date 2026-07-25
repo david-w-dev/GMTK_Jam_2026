@@ -6,6 +6,8 @@ signal round_ended(outcome: RoundOutcome)
 
 @export var wall_scene: PackedScene
 
+
+
 class Params:
 	## The length of each tick in seconds
 	var tick_duration_s: float
@@ -38,7 +40,7 @@ func end_round(outcome: RoundOutcome) -> void:
 	round_ended.emit(outcome)
 
 
-func _ready() -> void:
+func _ready() -> void:	
 	assert(params != null, "GameMaster added with null params")
 	# Create walls
 	for pos in CreateWallLayout.get_random_walls():
@@ -64,22 +66,20 @@ func _process(_delta: float) -> void:
 			child.run_towards($player.global_position)
 
 
-func _on_player_killed_enemy(enemy: Enemy) -> void:
-	enemies_remaining -= 1
-	enemy.queue_free()
-	set_mock_hud()
-	if enemies_remaining == 0:
-		end_round(RoundOutcome.WON)
-
-
 func _on_tick_timer_timeout() -> void:
 	$Level.turn_off_panel(num_ticks - ticks_remaining) # 0-indexed
 	ticks_remaining -= 1
 	set_mock_hud()
 	if ticks_remaining == 0:
 		end_round(RoundOutcome.TIMEOUT)
-	
+
 
 func _on_player_death() -> void:
 	end_round(RoundOutcome.DIED)
-	
+
+
+func _on_spawner_enemy_killed() -> void:
+	enemies_remaining -= 1
+	set_mock_hud()
+	if enemies_remaining == 0:
+		end_round(RoundOutcome.WON)

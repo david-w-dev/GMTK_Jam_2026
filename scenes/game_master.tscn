@@ -28,5 +28,5 @@ offset_bottom = 23.0
 horizontal_alignment = 2
 
 [connection signal="death" from="player" to="." method="_on_player_death"]
-[connection signal="killed_enemy" from="player" to="." method="_on_player_killed_enemy"]
+[connection signal="enemy_killed" from="spawner" to="." method="_on_spawner_enemy_killed"]
 [connection signal="timeout" from="tick_timer" to="." method="_on_tick_timer_timeout"]

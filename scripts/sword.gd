@@ -1,8 +1,12 @@
 extends Area3D
 class_name Sword
 
-## The sword just collided with an enemy
-signal hit_enemy(enemy: Enemy)
+@export var player : PlayerController
+
+@export_category("Stats")
+@export var max_damage := 1
+
+@onready var sword_collision := $SwordCollision
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,7 +18,7 @@ func set_swinging(should_start: bool) -> void:
 		# Nothing to do
 		return
 	visible = should_start
-	$CollisionShape3D.set_deferred("disabled", not should_start)
+	sword_collision.set_deferred("disabled", not should_start)
 	if should_start:
 		$Timer.start()
 	else:
@@ -27,5 +31,6 @@ func _on_timer_timeout() -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if visible and body is Enemy:
+		var enemy = body
 		# TODO: there is a bug where you can hit the same enemy twice in quick succession
-		hit_enemy.emit(body)
+		player.deal_damage(enemy, max_damage)

@@ -6,16 +6,20 @@ class_name Enemy
 @export var movement_speed: int
 @export_category("Stats")
 @export var damage := 1
+@export var max_health := 2
 
 @onready var attack_cooldown := $AttackCooldown
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
+@onready var _current_health := max_health
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+signal death(sender_node : Enemy)
 
 func _ready() -> void:
 	nav.path_desired_distance = 0.5
 	nav.target_desired_distance = 0.5
-	
+
 
 func _physics_process(_delta: float) -> void:
 	if nav.is_navigation_finished():
@@ -25,7 +29,7 @@ func _physics_process(_delta: float) -> void:
 	next_path_position.y = global_position.y # TODO: maybe this shouldn't be necessary? Need to figure out what's going on with y-coordinates
 	velocity = global_position.direction_to(next_path_position) * movement_speed
 	move_and_slide()
-	
+
 	# Player collision detection:
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
@@ -37,7 +41,12 @@ func deal_damage(target):
 	if attack_cooldown.is_stopped():
 		target.take_damage(damage)
 		attack_cooldown.start()
-	
+
+func take_damage(damage_amount : int):
+	if damage_amount >= _current_health:
+		death.emit(self)
+	else:
+		_current_health -= damage_amount
 
 func run_towards(point: Vector3) -> void:
 	nav.set_target_position(point)

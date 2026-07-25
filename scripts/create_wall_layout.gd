@@ -19,7 +19,7 @@ const WALL_TARGET_WIDTH: float = 4.0
 
 ## The width/height of the square grid in cells
 ## Conceptually this grid extends so that it circumscribes the panel cirlce
-const GRID_SIZE_CELLS: int = 2 * PlacePanels.RADIUS / WALL_TARGET_WIDTH
+const GRID_SIZE_CELLS: int = floor(2 * PlacePanels.RADIUS / WALL_TARGET_WIDTH)
 
 enum Orientation { NORTH_SOUTH, EAST_WEST } # -ve z is north, +ve x is east
 enum Direction { NORTH, EAST, SOUTH, WEST }
@@ -47,7 +47,7 @@ const SIDE_LENGTH: float = 2 * PlacePanels.RADIUS
 const NW_CORNER: Vector2 = Vector2(-SIDE_LENGTH / 2, -SIDE_LENGTH / 2)
 const CELL_SIZE: float = SIDE_LENGTH / GRID_SIZE_CELLS
 const SCALE: float = CELL_SIZE / WALL_MODEL_WIDTH
-var wall_scene = load("res://scenes/wall.tscn")
+var wall_scene = preload("res://scenes/wall.tscn")
 
 static func get_random_walls() -> Array[WallPosition]:
 	var wall_positions: Array[WallPosition] = []
@@ -79,7 +79,7 @@ static func set_wall_position(wall: Node, pos: WallPosition) -> void:
 	wall.position = Vector3(pos2d.x, 0, pos2d.y)
 	wall.scale.x = SCALE
 	wall.scale.y = pos.height
-	wall.rotation.y = PI / 2 if pos.orientation == Orientation.NORTH_SOUTH else 0
+	wall.rotation.y = PI / 2 if pos.orientation == Orientation.NORTH_SOUTH else 0.0
 
 func _run() -> void:
 	var scene = EditorInterface.get_edited_scene_root()

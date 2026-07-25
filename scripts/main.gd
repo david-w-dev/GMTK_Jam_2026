@@ -88,5 +88,3 @@ func _on_post_round_state_exited() -> void:
 
 func _on_end_screen_new_game_started() -> void:
 	state.send_event("restart")
-
-# David comment

@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://pgqo0fqoxqqs" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dypenbcg0dnxl" path="res://scripts/camera_effects.gd" id="2_dqkch"]
 [ext_resource type="PackedScene" uid="uid://6auf6d4rpou4" path="res://scenes/sword.tscn" id="2_g2els"]
-[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_jej6c"]
 [ext_resource type="Script" uid="uid://gbh8sx5odavs" path="res://scripts/camera_controller.gd" id="2_tuyoq"]
 [ext_resource type="PackedScene" uid="uid://fnhljqdgqxtq" path="res://scenes/gun.tscn" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://dwvd6uhdi5rg6" path="res://scripts/mouse_capture.gd" id="5_qlg0r"]
@@ -25,11 +24,6 @@ camera = NodePath("Head")
 state_chart = NodePath("StateChart")
 camera_effects = NodePath("Head/Camera3D")
 
-[node name="StateChartDebugger" parent="." unique_id=349460721 instance=ExtResource("2_jej6c")]
-offset_right = -870.0
-offset_bottom = -338.0
-initial_node_to_watch = NodePath("../StateChart")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1910191105]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_auouy")
@@ -48,9 +42,11 @@ max_roll = 1.5
 [node name="weapons" type="Node3D" parent="Head" unique_id=1762543175]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
 
-[node name="gun" parent="Head/weapons" unique_id=1944798131 instance=ExtResource("3_qhqgy")]
+[node name="gun" parent="Head/weapons" unique_id=1944798131 node_paths=PackedStringArray("player") instance=ExtResource("3_qhqgy")]
+player = NodePath("../../..")
 
-[node name="sword" parent="Head/weapons" unique_id=1032782066 instance=ExtResource("2_g2els")]
+[node name="sword" parent="Head/weapons" unique_id=1032782066 node_paths=PackedStringArray("player") instance=ExtResource("2_g2els")]
+player = NodePath("../../..")
 
 [node name="Components" type="Node" parent="." unique_id=359714393]
 
@@ -126,7 +122,6 @@ event = &"onGrounded"
 delay_in_seconds = "0.0"
 
 [connection signal="shot_enemy" from="Head/weapons/gun" to="." method="_on_gun_shot_enemy"]
-[connection signal="hit_enemy" from="Head/weapons/sword" to="." method="_on_sword_hit_enemy"]
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Grounded" to="StateMachine" method="_on_grounded_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Grounded/Moving" to="StateMachine" method="_on_moving_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/Root/Movement/Grounded/Idle" to="StateMachine" method="_on_idle_state_physics_processing"]

@@ -16,6 +16,8 @@ class_name PlayerController extends CharacterBody3D
 @export var camera_effects : CameraEffects
 @export_category("Health")
 @export var player_health := 3
+@export_category("Weapons")
+@export var starting_ammo := 10
 
 # Privates
 var _input_dir : Vector2 = Vector2.ZERO
@@ -24,11 +26,10 @@ var _current_health : int
 
 var current_fall_velocity : float
 
-## The player just killed an enemy
-signal killed_enemy(enemy: Enemy)
+## The player deals damage to an enemy
+signal damage_enemy(damage_amount : int)
 
 ## The player was hit by an enemy
-signal took_damage(enemy: Enemy)
 signal death()
 
 func _init() -> void:
@@ -76,14 +77,10 @@ func check_fall_speed() -> bool:
 		return false
 
 func take_damage(damage_amount):
-	if _current_health == 1:
+	if damage_amount >= _current_health:
 		death.emit()
 	else:
 		_current_health -= damage_amount
 
-func _on_sword_hit_enemy(enemy: Enemy) -> void:
-	killed_enemy.emit(enemy)
-
-
-func _on_gun_shot_enemy(enemy: Enemy) -> void:
-	killed_enemy.emit(enemy)
+func deal_damage(enemy, damage_amount):
+	enemy.take_damage(damage_amount)

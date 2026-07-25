@@ -82,28 +82,46 @@ scenes:
 ## milestone 2
 
 - joe:
-	- [ ] wall layout generation
+	- [X] wall layout generation
 		- wall circle, 50/50 chance of a wall
-	- [ ] enemy health
-	- [ ] make panels meet
+	- [ ] export to web
+	- [ ] player ammo count
 
 - david:
-	- [ ] player ammo count
-	- [ ] enemy feedback on attack
-	- [ ] enemy attack cooldown
-	- [ ] player health
+	- [x] enemy attack cooldown
+- [] enemy feedback on attack
+	- [] player health
+	- [x] enemy health
 	- [ ] gun refinements
+		  - [ ] model
+		  - [ ] raycast visible
+		  - [ ] aiming
+		  - [ ] ammo count on the gun
 
 ## milestone 3
 
+- play test:
+	- [ ] enemy count progression
+	- [ ] round duration
+
 - david:
 	- [ ] create circular border scene
+	- [ ] lighting
 
 - joe:
+	- [ ] walls dip down and up
+	- [ ] remove the "win" screen
+	- [ ] ammo pickup between rounds
 	- [ ] enemy navigation to avoid the walls
 	- [ ] load textures for wall generation parameters
+	- [ ] make panels meet
 
 ## ideas
 
-- radar-like minimap showing enemies
-- gaining ammo according to panels left on at the end of the round
+- menu
+- modelling
+- animation
+
+- [ ] win screen after 10 rounds
+- [ ] radar-like minimap showing enemies
+- [ ] gaining ammo according to panels left on at the end of the round
