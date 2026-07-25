@@ -8,9 +8,9 @@ func get_num_panels() -> int:
 			count += 1
 	return count
 
-func turn_off_panel(idx: int) -> void:
+func switch_panel(idx: int, state: String) -> void:
 	var panel = $PanelBorder.get_node(PanelUtils.panel_name(idx))
 	if panel == null:
 		printerr("couldn't get panel %d" % idx)
 		return
-	panel.switch("off")
+	panel.switch(state)

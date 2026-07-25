@@ -10,9 +10,11 @@ class_name Enemy
 
 @onready var attack_cooldown := $AttackCooldown
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
+@onready var attack_flag = $AttackFlag
 @onready var _current_health := max_health
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var knockback_velocity: Vector3 = Vector3.ZERO
 
 signal death(sender_node : Enemy)
 
@@ -29,6 +31,7 @@ func _physics_process(_delta: float) -> void:
 	next_path_position.y = global_position.y # TODO: maybe this shouldn't be necessary? Need to figure out what's going on with y-coordinates
 	velocity = global_position.direction_to(next_path_position) * movement_speed
 	move_and_slide()
+	attack_telegraph()
 
 	# Player collision detection:
 	for i in get_slide_collision_count():
@@ -42,11 +45,26 @@ func deal_damage(target):
 		target.take_damage(damage)
 		attack_cooldown.start()
 
-func take_damage(damage_amount : int):
+func calculate_knockback(source_position: Vector3, force: float):
+	var direction = global_position.direction_to(source_position) * -1
+
+	direction.y = 1
+	direction = direction.normalized()
+
+	knockback_velocity = direction * force
+
+func take_damage(player_position : Vector3, damage_amount : int, attack_force: float):
 	if damage_amount >= _current_health:
 		death.emit(self)
 	else:
 		_current_health -= damage_amount
+	calculate_knockback(player_position, attack_force)
+
+func attack_telegraph():
+	if not attack_cooldown.is_stopped():
+		attack_flag.visible = true
+	if attack_cooldown.is_stopped():
+		attack_flag.visible = false
 
 func run_towards(point: Vector3) -> void:
 	nav.set_target_position(point)

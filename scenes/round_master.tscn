@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://vsy8cmgem063"]
+
+[ext_resource type="Script" uid="uid://dsdipoimaagpd" path="res://scripts/round_master.gd" id="1_7o74w"]
+[ext_resource type="PackedScene" uid="uid://6e4n7ylmgaet" path="res://scenes/wall.tscn" id="2_ynj3r"]
+[ext_resource type="Script" uid="uid://cvhx1v52e8234" path="res://scripts/enemy_spawner.gd" id="3_c58xo"]
+
+[node name="RoundMaster" type="Node3D" unique_id=1251060153]
+script = ExtResource("1_7o74w")
+wall_scene = ExtResource("2_ynj3r")
+
+[node name="tick_timer" type="Timer" parent="." unique_id=1653422239]
+
+[node name="mock_hud" type="Label" parent="." unique_id=2072648347]
+offset_left = 923.0
+offset_right = 1040.0
+offset_bottom = 23.0
+horizontal_alignment = 2
+
+[node name="spawner" type="Node3D" parent="." unique_id=1522879286]
+script = ExtResource("3_c58xo")
+
+[connection signal="timeout" from="tick_timer" to="." method="_on_tick_timer_timeout"]
+[connection signal="enemy_killed" from="spawner" to="." method="_on_spawner_enemy_killed"]

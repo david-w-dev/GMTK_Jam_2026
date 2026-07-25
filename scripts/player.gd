@@ -18,6 +18,7 @@ class_name PlayerController extends CharacterBody3D
 @export var player_health := 3
 @export_category("Weapons")
 @export var starting_ammo := 10
+@export var attack_force := 500
 
 # Privates
 var _input_dir : Vector2 = Vector2.ZERO
@@ -27,7 +28,7 @@ var _current_health : int
 var current_fall_velocity : float
 
 ## The player deals damage to an enemy
-signal damage_enemy(damage_amount : int)
+signal damage_enemy(damage_amount : int) # TODO: possibly unused
 
 ## The player was hit by an enemy
 signal death()
@@ -83,4 +84,4 @@ func take_damage(damage_amount):
 		_current_health -= damage_amount
 
 func deal_damage(enemy, damage_amount):
-	enemy.take_damage(damage_amount)
+	enemy.take_damage(self.global_position, damage_amount, attack_force)

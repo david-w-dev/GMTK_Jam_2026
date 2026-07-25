@@ -1,85 +1,65 @@
 extends Node3D
 class_name GameMaster
 
-enum RoundOutcome { WON, DIED, TIMEOUT }
-signal round_ended(outcome: RoundOutcome)
+## The length in seconds of each tick (i.e. the time between panels switching off)
+@export var tick_duration_secs: float
+## The number of enemies in the first round
+@export var initial_num_enemies: int
+## The number of enemies in a round is the previous number multiplied by this multiplier
+## (and rounded). This means that the enemy count grows exponentially over the rounds
+@export var num_enemies_multiplier: float
 
-@export var wall_scene: PackedScene
+enum GameOutcome { WON, LOST }
 
+signal game_ended(outcome: GameOutcome)
 
+var round_master_scene = preload("res://scenes/round_master.tscn")
 
-class Params:
-	## The length of each tick in seconds
-	var tick_duration_s: float
-	## The number of enemies in this round
-	var num_enemies: int
-	## The round number, to show how many rounds have been played so far (1-indexed)
-	var round_number: int
+@onready var state = $StateChart
+var round_index: int = 0
+var current_rm: RoundMaster
 
+func _on_pre_round_state_entered() -> void:
+	print("in preround")
+	# Create a new round
+	var params = RoundMaster.Params.new()
+	params.round_number = round_index + 1
+	params.tick_duration_s = tick_duration_secs
+	params.num_enemies = floor(initial_num_enemies * pow(num_enemies_multiplier, round_index))
+	params.num_ticks = $Level.get_num_panels()
+	params.player = $player
+	params.level = $Level
+	current_rm = round_master_scene.instantiate()
+	current_rm.setup(params)
+	current_rm.connect("round_ended", _on_round_ended)
 
-var in_progress = true
-var params: Params = null
-var num_ticks: int
-var ticks_remaining: int
-var enemies_remaining: int
+	for i in range(params.num_ticks):
+		$Level.switch_panel(i, "on")
 
+	$PreRoundTimer.start()
 
-func setup(p: Params) -> void:
-	params = p
-	num_ticks = $Level.get_num_panels()
-	ticks_remaining = num_ticks
-	enemies_remaining = params.num_enemies
-
-
-func end_round(outcome: RoundOutcome) -> void:
-	if not in_progress:
-		# This could happen if multiple enemies hit the player at once, for example
-		return
-	in_progress = false
-	$tick_timer.stop()
-	round_ended.emit(outcome)
-
-
-func _ready() -> void:
-	assert(params != null, "GameMaster added with null params")
-	# Create walls
-	for pos in WallGenerator.get_random_walls():
-		var wall = wall_scene.instantiate()
-		add_child(wall)
-		WallGenerator.set_wall_position(wall, pos)
-
-	set_mock_hud()
-	$tick_timer.start(params.tick_duration_s)
-	for i in range(params.num_enemies):
-		add_child($spawner.spawn_enemy())
+func _on_post_round_state_entered() -> void:
+	print("in postround")
+	remove_child(current_rm)
+	current_rm.queue_free()
+	round_index += 1
+	$PostRoundTimer.start()
 
 
-func set_mock_hud() -> void:
-	# Note: this HUD is just for debug and testing
-	$mock_hud.text = "round %d\nticks remaining: %d\nenemies remaining: %d" \
-						% [params.round_number, ticks_remaining, enemies_remaining]
+func _on_pre_round_timer_timeout() -> void:
+	state.send_event("start_round")
 
 
-func _process(_delta: float) -> void:
-	for child in get_children():
-		if child is Enemy:
-			child.run_towards($player.global_position)
+func _on_during_round_state_entered() -> void:
+	add_child(current_rm)
+
+func _on_round_ended(outcome: RoundMaster.RoundOutcome) -> void:
+	print("round ended")
+	if outcome == RoundMaster.RoundOutcome.WON:
+		state.send_event("win_round")
+	else:
+		game_ended.emit(GameOutcome.LOST)
 
 
-func _on_tick_timer_timeout() -> void:
-	$Level.turn_off_panel(num_ticks - ticks_remaining) # 0-indexed
-	ticks_remaining -= 1
-	set_mock_hud()
-	if ticks_remaining == 0:
-		end_round(RoundOutcome.TIMEOUT)
-
-
-func _on_player_death() -> void:
-	end_round(RoundOutcome.DIED)
-
-
-func _on_spawner_enemy_killed() -> void:
-	enemies_remaining -= 1
-	set_mock_hud()
-	if enemies_remaining == 0:
-		end_round(RoundOutcome.WON)
+func _on_post_round_timer_timeout() -> void:
+	state.send_event("prepare_for_next_round")

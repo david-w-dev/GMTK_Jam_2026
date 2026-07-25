@@ -10,9 +10,6 @@
 
 [node name="main" type="Node3D" unique_id=1063446286]
 script = ExtResource("1_jyhfs")
-tick_duration_secs = 0.5
-initial_num_enemies = 2
-num_enemies_multiplier = 2.0
 menu_scene = ExtResource("2_o6xl0")
 
 [node name="UserInterface" parent="." unique_id=468979991 instance=ExtResource("5_tbgi4")]
@@ -27,48 +24,49 @@ initial_state = NodePath("InitialMenu")
 [node name="InitialMenu" type="Node" parent="StateChart/Phase" unique_id=1874686303]
 script = ExtResource("5_o6xl0")
 
-[node name="StartRound" type="Node" parent="StateChart/Phase" unique_id=5976480]
+[node name="StartGame" type="Node" parent="StateChart/Phase" unique_id=5976480]
 script = ExtResource("6_tefeu")
-to = NodePath("../InRound")
-event = &"start_round"
+to = NodePath("../InGame")
+event = &"start_game"
 delay_in_seconds = "0.0"
 
-[node name="WinRound" type="Node" parent="StateChart/Phase" unique_id=1427561416]
+[node name="WinGame" type="Node" parent="StateChart/Phase" unique_id=1427561416]
 script = ExtResource("6_tefeu")
-to = NodePath("../PostRound/Won")
-event = &"win_round"
+to = NodePath("../PostGame/Won")
+event = &"win_game"
 delay_in_seconds = "0.0"
 
-[node name="LoseRound" type="Node" parent="StateChart/Phase" unique_id=1520808523]
+[node name="LoseGame" type="Node" parent="StateChart/Phase" unique_id=1520808523]
 script = ExtResource("6_tefeu")
-to = NodePath("../PostRound/Lost")
-event = &"lose_round"
+to = NodePath("../PostGame/Lost")
+event = &"lose_game"
 delay_in_seconds = "0.0"
 
 [node name="Restart" type="Node" parent="StateChart/Phase" unique_id=1539708011]
 script = ExtResource("6_tefeu")
-to = NodePath("../InRound")
+to = NodePath("../InGame")
 event = &"restart"
 delay_in_seconds = "0.0"
 
-[node name="InRound" type="Node" parent="StateChart/Phase" unique_id=50728799]
+[node name="InGame" type="Node" parent="StateChart/Phase" unique_id=1174475866]
 script = ExtResource("5_o6xl0")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
-[node name="PostRound" type="Node" parent="StateChart/Phase" unique_id=438445377]
+[node name="PostGame" type="Node" parent="StateChart/Phase" unique_id=438445377]
 script = ExtResource("4_tefeu")
 initial_state = NodePath("Won")
 
-[node name="Won" type="Node" parent="StateChart/Phase/PostRound" unique_id=2087968718]
+[node name="Won" type="Node" parent="StateChart/Phase/PostGame" unique_id=2087968718]
 script = ExtResource("5_o6xl0")
 
-[node name="Lost" type="Node" parent="StateChart/Phase/PostRound" unique_id=476298509]
+[node name="Lost" type="Node" parent="StateChart/Phase/PostGame" unique_id=476298509]
 script = ExtResource("5_o6xl0")
 
 [connection signal="state_entered" from="StateChart/Phase/InitialMenu" to="." method="_on_initial_menu_state_entered"]
 [connection signal="state_exited" from="StateChart/Phase/InitialMenu" to="." method="_on_initial_menu_state_exited"]
-[connection signal="state_entered" from="StateChart/Phase/InRound" to="." method="_on_in_round_state_entered"]
-[connection signal="state_exited" from="StateChart/Phase/InRound" to="." method="_on_in_round_state_exited"]
-[connection signal="child_state_entered" from="StateChart/Phase/PostRound" to="." method="_on_post_round_child_state_entered"]
-[connection signal="state_exited" from="StateChart/Phase/PostRound" to="." method="_on_post_round_state_exited"]
-[connection signal="state_entered" from="StateChart/Phase/PostRound/Won" to="." method="_on_won_state_entered"]
-[connection signal="state_entered" from="StateChart/Phase/PostRound/Lost" to="." method="_on_lost_state_entered"]
+[connection signal="state_entered" from="StateChart/Phase/InGame" to="." method="_on_in_game_state_entered"]
+[connection signal="state_exited" from="StateChart/Phase/InGame" to="." method="_on_in_game_state_exited"]
+[connection signal="child_state_entered" from="StateChart/Phase/PostGame" to="." method="_on_post_round_child_state_entered"]
+[connection signal="state_exited" from="StateChart/Phase/PostGame" to="." method="_on_post_game_state_exited"]
+[connection signal="state_entered" from="StateChart/Phase/PostGame/Won" to="." method="_on_won_state_entered"]
+[connection signal="state_entered" from="StateChart/Phase/PostGame/Lost" to="." method="_on_lost_state_entered"]

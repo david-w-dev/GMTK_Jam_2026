@@ -12,7 +12,7 @@ func spawn_enemy() -> Enemy:
 	var angle = randf_range(0, 2 * PI)
 	var distance = randf_range(spawn_min_dist, spawn_max_dist)
 	var spawn_pos = global_position + distance * Vector3.FORWARD.rotated(Vector3.UP, angle)
-	
+
 	var enemy = enemy_scene.instantiate()
 	enemy.death.connect(_on_enemy_death)
 	enemy.global_position = spawn_pos

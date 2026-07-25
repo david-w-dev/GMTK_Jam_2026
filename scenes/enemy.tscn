@@ -3,10 +3,17 @@
 [ext_resource type="Script" uid="uid://0ao482cttjum" path="res://scripts/enemy_base.gd" id="1_7p1mj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7p1mj"]
-albedo_color = Color(1, 0, 0, 1)
+albedo_color = Color(0.27630895, 0.27630895, 0.27630895, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7p1mj"]
 material = SubResource("StandardMaterial3D_7p1mj")
+radius = 0.45
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_md0e3"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4ra3w"]
+material = SubResource("StandardMaterial3D_md0e3")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_md0e3"]
 
@@ -16,9 +23,14 @@ collision_mask = 15
 script = ExtResource("1_7p1mj")
 movement_speed = 5
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=72708415]
+[node name="Body" type="MeshInstance3D" parent="." unique_id=72708415]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_7p1mj")
+
+[node name="AttackFlag" type="MeshInstance3D" parent="." unique_id=1724434603]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_4ra3w")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=311847449]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
