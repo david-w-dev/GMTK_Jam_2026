@@ -43,10 +43,10 @@ func end_round(outcome: RoundOutcome) -> void:
 func _ready() -> void:
 	assert(params != null, "GameMaster added with null params")
 	# Create walls
-	for pos in CreateWallLayout.get_random_walls():
+	for pos in WallGenerator.get_random_walls():
 		var wall = wall_scene.instantiate()
 		add_child(wall)
-		CreateWallLayout.set_wall_position(wall, pos)
+		WallGenerator.set_wall_position(wall, pos)
 
 	set_mock_hud()
 	$tick_timer.start(params.tick_duration_s)

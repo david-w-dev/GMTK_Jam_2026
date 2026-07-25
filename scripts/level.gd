@@ -9,7 +9,7 @@ func get_num_panels() -> int:
 	return count
 
 func turn_off_panel(idx: int) -> void:
-	var panel = $PanelBorder.get_node(PlacePanels.panel_name(idx))
+	var panel = $PanelBorder.get_node(PanelUtils.panel_name(idx))
 	if panel == null:
 		printerr("couldn't get panel %d" % idx)
 		return
