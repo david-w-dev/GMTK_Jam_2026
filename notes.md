@@ -55,24 +55,55 @@ scenes:
 
 - david:
 	- [] player feel (head bob etc)
+		- [] Head bob
+		- [] Jump/Landing kick
+		- [] Weapon kick
+		- [] Running tilt
+		- [] Screen Shakes
+		- [] Damage Camera kicks
+
 	- [x] create panel scene (+ enemy counter)
 		- [x] dim() # e.g. white to red
 		- [x] off() # e.g. white to off
 	- [] make round area
 	- [] place some more walls
-	
+
 - joe:
-	- pool of enemies spawned at the start of round
-	- win condition when they are all dead
-	- enemy can kill you
-	- fail condition if you die or run out of time
-	- placement of panels in circle
-	- game timer
-	- debug ui: timer and enemy count
+	- [X] pool of enemies spawned at the start of round
+	- [X] win condition when they are all dead
+	- [X] enemy can kill you
+	- [X] fail condition if you die or run out of time
+	- [X] placement of panels in circle
+	- [X] game timer
+	- [X] debug ui: timer and enemy count
+	- [X] @tool usage for panel placement
+	- [X] have panels turned off according to timer
 
 ## milestone 2
 
 - joe:
-	- wall layout generation
-	- @tool usage for panel placement
-	- have panels turned off according to timer
+	- [ ] wall layout generation
+		- wall circle, 50/50 chance of a wall
+	- [ ] enemy health
+	- [ ] make panels meet
+
+- david:
+	- [ ] player ammo count
+	- [ ] enemy feedback on attack
+	- [ ] enemy attack cooldown
+	- [ ] player health
+	- [ ] gun refinements
+
+## milestone 3
+
+- david:
+	- [ ] create circular border scene
+
+- joe:
+	- [ ] enemy navigation to avoid the walls
+	- [ ] load textures for wall generation parameters
+
+## ideas
+
+- radar-like minimap showing enemies
+- gaining ammo according to panels left on at the end of the round

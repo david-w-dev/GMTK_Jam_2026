@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/backstitch/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg")
+
 [input]
 
 move_left={

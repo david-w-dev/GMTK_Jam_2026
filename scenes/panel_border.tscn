@@ -1,0 +1,185 @@
+[gd_scene format=3 uid="uid://bk5bmktpb8y3u"]
+
+[ext_resource type="PackedScene" uid="uid://drs1f5ca0o123" path="res://scenes/light_panel.tscn" id="2_fjmqm"]
+
+[node name="PanelBorder" type="Node3D" unique_id=2057963673]
+
+[node name="panel_0" parent="." unique_id=605924003 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22)
+
+[node name="panel_1" parent="." unique_id=295700934 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.9945219, 0, 0.104528464, 0, 1, 0, -0.104528464, 0, 0.9945219, -2.299626, 0, -21.879482)
+
+[node name="panel_2" parent="." unique_id=1508454485 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.9781476, 0, 0.2079117, 0, 1, 0, -0.2079117, 0, 0.9781476, -4.5740576, 0, -21.519247)
+
+[node name="panel_3" parent="." unique_id=648382169 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.95105654, 0, 0.309017, 0, 1, 0, -0.309017, 0, 0.95105654, -6.798374, 0, -20.923244)
+
+[node name="panel_4" parent="." unique_id=406622331 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.9135454, 0, 0.40673664, 0, 1, 0, -0.40673664, 0, 0.9135454, -8.948206, 0, -20.098)
+
+[node name="panel_5" parent="." unique_id=2136986966 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, -11, 0, -19.052559)
+
+[node name="panel_6" parent="." unique_id=130866697 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.809017, 0, 0.58778524, 0, 1, 0, -0.58778524, 0, 0.809017, -12.931275, 0, -17.798374)
+
+[node name="panel_7" parent="." unique_id=749590970 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.7431448, 0, 0.6691306, 0, 1, 0, -0.6691306, 0, 0.7431448, -14.720874, 0, -16.349186)
+
+[node name="panel_8" parent="." unique_id=1144070138 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.66913056, 0, 0.74314487, 0, 1, 0, -0.74314487, 0, 0.66913056, -16.349188, 0, -14.720873)
+
+[node name="panel_9" parent="." unique_id=1318177073 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.58778524, 0, 0.809017, 0, 1, 0, -0.809017, 0, 0.58778524, -17.798374, 0, -12.931275)
+
+[node name="panel_10" parent="." unique_id=83314199 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -19.052559, 0, -10.999999)
+
+[node name="panel_11" parent="." unique_id=2129312724 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.4067366, 0, 0.9135455, 0, 1, 0, -0.9135455, 0, 0.4067366, -20.098001, 0, -8.948206)
+
+[node name="panel_12" parent="." unique_id=872500772 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.30901697, 0, 0.95105654, 0, 1, 0, -0.95105654, 0, 0.30901697, -20.923244, 0, -6.798373)
+
+[node name="panel_13" parent="." unique_id=1250379233 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.20791166, 0, 0.9781476, 0, 1, 0, -0.9781476, 0, 0.20791166, -21.519247, 0, -4.5740566)
+
+[node name="panel_14" parent="." unique_id=755606334 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.10452842, 0, 0.9945219, 0, 1, 0, -0.9945219, 0, 0.10452842, -21.879482, 0, -2.2996252)
+
+[node name="panel_15" parent="." unique_id=535637972 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -22, 0, 9.616506e-07)
+
+[node name="panel_16" parent="." unique_id=180978101 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.10452851, 0, 0.9945219, 0, 1, 0, -0.9945219, 0, -0.10452851, -21.879482, 0, 2.2996273)
+
+[node name="panel_17" parent="." unique_id=2072397168 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.20791174, 0, 0.97814757, 0, 1, 0, -0.97814757, 0, -0.20791174, -21.519247, 0, 4.5740585)
+
+[node name="panel_18" parent="." unique_id=1975679422 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.30901703, 0, 0.9510565, 0, 1, 0, -0.9510565, 0, -0.30901703, -20.923243, 0, 6.7983747)
+
+[node name="panel_19" parent="." unique_id=23702216 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.4067367, 0, 0.9135454, 0, 1, 0, -0.9135454, 0, -0.4067367, -20.098, 0, 8.948208)
+
+[node name="panel_20" parent="." unique_id=1469339693 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.50000006, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, -0.50000006, -19.052559, 0, 11.000001)
+
+[node name="panel_21" parent="." unique_id=1682937275 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.5877852, 0, 0.809017, 0, 1, 0, -0.809017, 0, -0.5877852, -17.798374, 0, 12.931274)
+
+[node name="panel_22" parent="." unique_id=1142669740 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.6691307, 0, 0.7431448, 0, 1, 0, -0.7431448, 0, -0.6691307, -16.349186, 0, 14.720875)
+
+[node name="panel_23" parent="." unique_id=315021964 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.7431448, 0, 0.6691306, 0, 1, 0, -0.6691306, 0, -0.7431448, -14.720874, 0, 16.349186)
+
+[node name="panel_24" parent="." unique_id=1707269242 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.80901706, 0, 0.5877852, 0, 1, 0, -0.5877852, 0, -0.80901706, -12.931274, 0, 17.798376)
+
+[node name="panel_25" parent="." unique_id=1638360946 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.8660254, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660254, -11.000001, 0, 19.052559)
+
+[node name="panel_26" parent="." unique_id=1430509328 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.9135455, 0, 0.40673658, 0, 1, 0, -0.40673658, 0, -0.9135455, -8.948205, 0, 20.098001)
+
+[node name="panel_27" parent="." unique_id=2020157167 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.9510565, 0, 0.30901703, 0, 1, 0, -0.30901703, 0, -0.9510565, -6.7983747, 0, 20.923243)
+
+[node name="panel_28" parent="." unique_id=106086931 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.9781476, 0, 0.20791161, 0, 1, 0, -0.20791161, 0, -0.9781476, -4.5740557, 0, 21.519247)
+
+[node name="panel_29" parent="." unique_id=493030498 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.9945219, 0, 0.104528494, 0, 1, 0, -0.104528494, 0, -0.9945219, -2.2996268, 0, 21.879482)
+
+[node name="panel_30" parent="." unique_id=465432250 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.9233012e-06, 0, 22)
+
+[node name="panel_31" parent="." unique_id=1967697661 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.9945219, 0, -0.104528435, 0, 1, 0, 0.104528435, 0, -0.9945219, 2.2996256, 0, 21.879482)
+
+[node name="panel_32" parent="." unique_id=1698396395 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.97814757, 0, -0.20791179, 0, 1, 0, 0.20791179, 0, -0.97814757, 4.5740595, 0, 21.519247)
+
+[node name="panel_33" parent="." unique_id=33209576 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.95105654, 0, -0.30901697, 0, 1, 0, 0.30901697, 0, -0.95105654, 6.798373, 0, 20.923244)
+
+[node name="panel_34" parent="." unique_id=684298724 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.9135454, 0, -0.40673673, 0, 1, 0, 0.40673673, 0, -0.9135454, 8.948208, 0, 20.098)
+
+[node name="panel_35" parent="." unique_id=566426833 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.8660254, 0, -0.49999997, 0, 1, 0, 0.49999997, 0, -0.8660254, 10.999999, 0, 19.052559)
+
+[node name="panel_36" parent="." unique_id=893246030 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.80901694, 0, -0.58778536, 0, 1, 0, 0.58778536, 0, -0.80901694, 12.931278, 0, 17.798372)
+
+[node name="panel_37" parent="." unique_id=1451786349 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.7431448, 0, -0.6691306, 0, 1, 0, 0.6691306, 0, -0.7431448, 14.720874, 0, 16.349186)
+
+[node name="panel_38" parent="." unique_id=1874872685 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.6691305, 0, -0.74314487, 0, 1, 0, 0.74314487, 0, -0.6691305, 16.349188, 0, 14.720871)
+
+[node name="panel_39" parent="." unique_id=2033095637 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.58778507, 0, -0.8090171, 0, 1, 0, 0.8090171, 0, -0.58778507, 17.798376, 0, 12.931272)
+
+[node name="panel_40" parent="." unique_id=191131111 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.4999999, 0, -0.86602545, 0, 1, 0, 0.86602545, 0, -0.4999999, 19.052559, 0, 10.999998)
+
+[node name="panel_41" parent="." unique_id=1506953412 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.40673664, 0, -0.9135454, 0, 1, 0, 0.9135454, 0, -0.40673664, 20.098, 0, 8.948206)
+
+[node name="panel_42" parent="." unique_id=2099121035 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.3090171, 0, -0.9510565, 0, 1, 0, 0.9510565, 0, -0.3090171, 20.923243, 0, 6.798376)
+
+[node name="panel_43" parent="." unique_id=871948486 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.20791192, 0, -0.97814757, 0, 1, 0, 0.97814757, 0, -0.20791192, 21.519247, 0, 4.5740623)
+
+[node name="panel_44" parent="." unique_id=1463572158 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(-0.10452834, 0, -0.9945219, 0, 1, 0, 0.9945219, 0, -0.10452834, 21.879482, 0, 2.2996235)
+
+[node name="panel_45" parent="." unique_id=1625496334 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 22, 0, -2.6234738e-07)
+
+[node name="panel_46" parent="." unique_id=1262374905 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.10452836, 0, -0.9945219, 0, 1, 0, 0.9945219, 0, 0.10452836, 21.879482, 0, -2.299624)
+
+[node name="panel_47" parent="." unique_id=545602138 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.20791148, 0, -0.9781476, 0, 1, 0, 0.9781476, 0, 0.20791148, 21.519247, 0, -4.5740523)
+
+[node name="panel_48" parent="." unique_id=183984778 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.30901712, 0, -0.9510565, 0, 1, 0, 0.9510565, 0, 0.30901712, 20.923243, 0, -6.7983766)
+
+[node name="panel_49" parent="." unique_id=692379108 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.40673667, 0, -0.9135454, 0, 1, 0, 0.9135454, 0, 0.40673667, 20.098, 0, -8.948207)
+
+[node name="panel_50" parent="." unique_id=134462510 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.4999999, 0, -0.86602545, 0, 1, 0, 0.86602545, 0, 0.4999999, 19.052559, 0, -10.999998)
+
+[node name="panel_51" parent="." unique_id=614148398 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.58778507, 0, -0.8090171, 0, 1, 0, 0.8090171, 0, 0.58778507, 17.798376, 0, -12.931272)
+
+[node name="panel_52" parent="." unique_id=2073979098 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.66913074, 0, -0.74314475, 0, 1, 0, 0.74314475, 0, 0.66913074, 16.349184, 0, -14.720877)
+
+[node name="panel_53" parent="." unique_id=482570716 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.74314487, 0, -0.66913056, 0, 1, 0, 0.66913056, 0, 0.74314487, 14.720873, 0, -16.349188)
+
+[node name="panel_54" parent="." unique_id=2072649133 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.80901694, 0, -0.5877853, 0, 1, 0, 0.5877853, 0, 0.80901694, 12.931276, 0, -17.798372)
+
+[node name="panel_55" parent="." unique_id=1749395216 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.8660253, 0, -0.5000002, 0, 1, 0, 0.5000002, 0, 0.8660253, 11.000004, 0, -19.052557)
+
+[node name="panel_56" parent="." unique_id=677441952 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.91354555, 0, -0.4067365, 0, 1, 0, 0.4067365, 0, 0.91354555, 8.948203, 0, -20.098001)
+
+[node name="panel_57" parent="." unique_id=2000704727 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.95105654, 0, -0.30901694, 0, 1, 0, 0.30901694, 0, 0.95105654, 6.7983727, 0, -20.923244)
+
+[node name="panel_58" parent="." unique_id=655725550 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.97814757, 0, -0.20791176, 0, 1, 0, 0.20791176, 0, 0.97814757, 4.5740585, 0, -21.519247)
+
+[node name="panel_59" parent="." unique_id=236456680 instance=ExtResource("2_fjmqm")]
+transform = Transform3D(0.99452186, 0, -0.10452865, 0, 1, 0, 0.10452865, 0, 0.99452186, 2.2996304, 0, -21.87948)

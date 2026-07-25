@@ -1,28 +1,40 @@
-extends CharacterBody3D
+class_name PlayerController extends CharacterBody3D
 
-@export_group("movement")
-@export var movement_speed: int
-@export var jump_speed: int
-@export var mouse_sensitivity: float
+@onready var sword: Sword = get_node("Head/weapons/sword")
+@onready var gun: Gun = get_node("Head/weapons/gun")
+
+@export_category("Movement")
+@export var movement_speed := 5.0
+@export var jump_velocity := 5.0
+@export var fall_velocity_threshold := -5.0
+@export var acceleration := 0.4
+@export var deceleration := 0.8
+@export_category("References")
+@export var camera : CameraController
+@export var state_chart : StateChart
+@export_category("Effects")
+@export var camera_effects : CameraEffects
+@export_category("Health")
+@export var player_health := 3
+
+# Privates
+var _input_dir : Vector2 = Vector2.ZERO
+var _movement_velocity : Vector3 = Vector3.ZERO
+var _current_health : int
+
+var current_fall_velocity : float
 
 ## The player just killed an enemy
 signal killed_enemy(enemy: Enemy)
 
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+## The player was hit by an enemy
+signal took_damage(enemy: Enemy)
+signal death()
 
-@onready var weapons: Node3D = $Head/weapons
-@onready var sword: Sword = get_node("Head/weapons/sword")
-@onready var gun: Gun = get_node("Head/weapons/gun")
-@onready var head: Node3D = $Head
+func _init() -> void:
+	_current_health = player_health
 
-	
-func _input(event):
-	# Camera
-	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		rotate_y(-event.relative.x * mouse_sensitivity)
-		head.rotate_x(-event.relative.y * mouse_sensitivity)
-		head.rotation.x = clampf(head.rotation.x, -deg_to_rad(70), deg_to_rad(70))
-
+func _input(_event: InputEvent) -> void:
 	# Weapons
 	if Input.is_action_just_pressed("melee"):
 		sword.set_swinging(true)
@@ -30,18 +42,44 @@ func _input(event):
 		gun.fire()
 
 func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
 	# handle movement
-	velocity.y -= gravity * delta
-	var input = Input.get_vector("move_left", "move_right", "move_forwards", "move_backwards")
-	var dir = transform.basis * Vector3(input.x, 0, input.y)
-	velocity.x = dir.x * movement_speed
-	velocity.z = dir.z * movement_speed
+	_input_dir = Input.get_vector("move_left", "move_right", "move_forwards", "move_backwards")
+	var current_velocity = Vector2(_movement_velocity.x, _movement_velocity.z)
+	var direction = (transform.basis * Vector3(_input_dir.x, 0, _input_dir.y)).normalized()
+
+	if direction:
+		current_velocity = lerp(current_velocity, Vector2(direction.x, direction.z) * movement_speed, acceleration)
+	else:
+		current_velocity = current_velocity.move_toward(Vector2.ZERO, deceleration)
+
+	_movement_velocity = Vector3(current_velocity.x, velocity.y, current_velocity.y)
+
+	velocity = _movement_velocity
+
 	move_and_slide()
-	if is_on_floor() and Input.is_action_just_pressed("jump"):
-		velocity.y = jump_speed
-		
 
+func update_rotation(rotation_input) -> void:
+	global_transform.basis = Basis.from_euler(rotation_input)
 
+func jump():
+	velocity.y += jump_velocity
+
+func check_fall_speed() -> bool:
+	if current_fall_velocity < fall_velocity_threshold:
+		current_fall_velocity = 0.0
+		return true
+	else:
+		current_fall_velocity = 0.0
+		return false
+
+func take_damage(damage_amount):
+	if _current_health == 1:
+		death.emit()
+	else:
+		_current_health -= damage_amount
 
 func _on_sword_hit_enemy(enemy: Enemy) -> void:
 	killed_enemy.emit(enemy)

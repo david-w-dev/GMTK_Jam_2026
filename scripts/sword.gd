@@ -8,10 +8,6 @@ signal hit_enemy(enemy: Enemy)
 func _ready() -> void:
 	set_swinging(false)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
 
 func set_swinging(should_start: bool) -> void:
 	if visible == should_start:
@@ -31,4 +27,5 @@ func _on_timer_timeout() -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if visible and body is Enemy:
+		# TODO: there is a bug where you can hit the same enemy twice in quick succession
 		hit_enemy.emit(body)

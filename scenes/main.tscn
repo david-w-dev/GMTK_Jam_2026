@@ -1,38 +1,74 @@
 [gd_scene format=3 uid="uid://dpr25p0pbijeq"]
 
-[ext_resource type="PackedScene" uid="uid://dys0os1sf1ys8" path="res://scenes/player.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://gwqjph14tr41" path="res://scripts/main.gd" id="1_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://b4yorohadmnh" path="res://scenes/level.tscn" id="2_0wfyh"]
-[ext_resource type="Script" uid="uid://cvhx1v52e8234" path="res://scripts/enemy_spawner.gd" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://jlxx1tqmfhu4" path="res://scenes/menu.tscn" id="2_o6xl0"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_tbgi4"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="4_tefeu"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="5_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://0dkwgs8holup" path="res://scenes/user_interface.tscn" id="5_tbgi4"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="6_tefeu"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_0xm2m"]
-sky_material = SubResource("ProceduralSkyMaterial_ig7tw")
-
-[sub_resource type="Environment" id="Environment_h2yge"]
-background_mode = 2
-sky = SubResource("Sky_0xm2m")
-
-[node name="main" type="Node3D" unique_id=907800234]
+[node name="main" type="Node3D" unique_id=1063446286]
 script = ExtResource("1_jyhfs")
+tick_duration_secs = 0.5
+initial_num_enemies = 2
+num_enemies_multiplier = 2.0
+menu_scene = ExtResource("2_o6xl0")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=720583688]
-environment = SubResource("Environment_h2yge")
+[node name="UserInterface" parent="." unique_id=468979991 instance=ExtResource("5_tbgi4")]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=255648881]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-shadow_enabled = true
+[node name="StateChart" type="Node" parent="." unique_id=893209168]
+script = ExtResource("3_tbgi4")
 
-[node name="player" parent="." unique_id=1628840050 instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.335372, 0)
+[node name="Phase" type="Node" parent="StateChart" unique_id=1988747433]
+script = ExtResource("4_tefeu")
+initial_state = NodePath("InitialMenu")
 
-[node name="Level" parent="." unique_id=1775775608 instance=ExtResource("2_0wfyh")]
+[node name="InitialMenu" type="Node" parent="StateChart/Phase" unique_id=1874686303]
+script = ExtResource("5_o6xl0")
 
-[node name="Enemy Spawner" type="Node3D" parent="." unique_id=1221274126]
-script = ExtResource("3_sugp2")
-spawn_range = 15.0
+[node name="StartRound" type="Node" parent="StateChart/Phase" unique_id=5976480]
+script = ExtResource("6_tefeu")
+to = NodePath("../InRound")
+event = &"start_round"
+delay_in_seconds = "0.0"
 
-[connection signal="killed_enemy" from="player" to="." method="_on_player_killed_enemy"]
+[node name="WinRound" type="Node" parent="StateChart/Phase" unique_id=1427561416]
+script = ExtResource("6_tefeu")
+to = NodePath("../PostRound/Won")
+event = &"win_round"
+delay_in_seconds = "0.0"
+
+[node name="LoseRound" type="Node" parent="StateChart/Phase" unique_id=1520808523]
+script = ExtResource("6_tefeu")
+to = NodePath("../PostRound/Lost")
+event = &"lose_round"
+delay_in_seconds = "0.0"
+
+[node name="Restart" type="Node" parent="StateChart/Phase" unique_id=1539708011]
+script = ExtResource("6_tefeu")
+to = NodePath("../InRound")
+event = &"restart"
+delay_in_seconds = "0.0"
+
+[node name="InRound" type="Node" parent="StateChart/Phase" unique_id=50728799]
+script = ExtResource("5_o6xl0")
+
+[node name="PostRound" type="Node" parent="StateChart/Phase" unique_id=438445377]
+script = ExtResource("4_tefeu")
+initial_state = NodePath("Won")
+
+[node name="Won" type="Node" parent="StateChart/Phase/PostRound" unique_id=2087968718]
+script = ExtResource("5_o6xl0")
+
+[node name="Lost" type="Node" parent="StateChart/Phase/PostRound" unique_id=476298509]
+script = ExtResource("5_o6xl0")
+
+[connection signal="state_entered" from="StateChart/Phase/InitialMenu" to="." method="_on_initial_menu_state_entered"]
+[connection signal="state_exited" from="StateChart/Phase/InitialMenu" to="." method="_on_initial_menu_state_exited"]
+[connection signal="state_entered" from="StateChart/Phase/InRound" to="." method="_on_in_round_state_entered"]
+[connection signal="state_exited" from="StateChart/Phase/InRound" to="." method="_on_in_round_state_exited"]
+[connection signal="child_state_entered" from="StateChart/Phase/PostRound" to="." method="_on_post_round_child_state_entered"]
+[connection signal="state_exited" from="StateChart/Phase/PostRound" to="." method="_on_post_round_state_exited"]
+[connection signal="state_entered" from="StateChart/Phase/PostRound/Won" to="." method="_on_won_state_entered"]
+[connection signal="state_entered" from="StateChart/Phase/PostRound/Lost" to="." method="_on_lost_state_entered"]

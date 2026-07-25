@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://bp8lwq1qkoys2"]
+
+[ext_resource type="PackedScene" uid="uid://6e4n7ylmgaet" path="res://scenes/wall.tscn" id="1_yax5h"]
+
+[node name="Walls" type="Node3D" unique_id=1250200215]
+
+[node name="Wall" type="Node3D" parent="." unique_id=605924003]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 0, -4)
+
+[node name="@Node3D@44323" type="Node3D" parent="." unique_id=1361462455]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, 0, 4)
+
+[node name="@Node3D@44324" type="Node3D" parent="." unique_id=1392473570]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 0, 4)
+
+[node name="@Node3D@44325" type="Node3D" parent="." unique_id=36220539]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 10)
+
+[node name="@Node3D@44326" type="Node3D" parent="." unique_id=54874181]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -6)
+
+[node name="@Node3D@44327" type="Node3D" parent="." unique_id=1724126772]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 0, 0)
+
+[node name="@Node3D@44328" type="Node3D" parent="." unique_id=1943056242]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 0, 4)
+
+[node name="@Node3D@44329" type="Node3D" parent="." unique_id=1780240726]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 0, 8)
+
+[node name="@Node3D@44330" type="Node3D" parent="." unique_id=1572171705]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 14)
+
+[node name="@Node3D@44331" type="Node3D" parent="." unique_id=1494270704]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 0, 12)
+
+[node name="@Node3D@44332" type="Node3D" parent="." unique_id=973680284]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, -12)
+
+[node name="@Node3D@44333" type="Node3D" parent="." unique_id=1079546536]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, 0)
+
+[node name="@Node3D@44334" type="Node3D" parent="." unique_id=160013334]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, 12)
+
+[node name="@Node3D@44335" type="Node3D" parent="." unique_id=2028222182]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, 0, 16)
+
+[node name="@Node3D@44336" type="Node3D" parent="." unique_id=333696931]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14)
+
+[node name="@Node3D@44337" type="Node3D" parent="." unique_id=776671427]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, -16)
+
+[node name="@Node3D@44338" type="Node3D" parent="." unique_id=719158037]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="@Node3D@44339" type="Node3D" parent="." unique_id=575697151]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="@Node3D@44340" type="Node3D" parent="." unique_id=184792278]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 8)
+
+[node name="@Node3D@44341" type="Node3D" parent="." unique_id=1343339317]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2)
+
+[node name="@Node3D@44342" type="Node3D" parent="." unique_id=1407598248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -14)
+
+[node name="@Node3D@44343" type="Node3D" parent="." unique_id=339374440]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -10)
+
+[node name="@Node3D@44344" type="Node3D" parent="." unique_id=2119205012]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 0, -12)
+
+[node name="@Node3D@44345" type="Node3D" parent="." unique_id=936256377]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 10)

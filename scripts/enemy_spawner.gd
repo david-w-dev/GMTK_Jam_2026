@@ -2,21 +2,15 @@ extends Node3D
 class_name EnemySpawner
 
 var enemy_scene = preload("res://scenes/enemy.tscn")
-@export var spawn_range = 5.0
-
-func _ready() -> void:
-	spawn_enemy()
+@export var spawn_max_dist = 20.0 # TODO: better system for this once we have wall generation?
+@export var spawn_min_dist = 10.0 # Temporary measure to avoid enemies spawning really close to the player
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func spawn_enemy() -> Enemy:
+	var angle = randf_range(0, 2 * PI)
+	var distance = randf_range(spawn_min_dist, spawn_max_dist)
 
-func spawn_enemy():
-	var random_x = randf_range(-spawn_range, spawn_range)
-	var random_z = randf_range(-spawn_range, spawn_range)
-	
-	var spawn_pos = global_position + Vector3(random_x, 0, random_z)
+	var spawn_pos = global_position + distance * Vector3.FORWARD.rotated(Vector3.UP, angle)
 	var enemy = enemy_scene.instantiate()
-	add_child(enemy)
 	enemy.global_position = spawn_pos
+	return enemy

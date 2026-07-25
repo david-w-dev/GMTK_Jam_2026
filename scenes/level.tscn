@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b4yorohadmnh"]
 
-[ext_resource type="PackedScene" uid="uid://6e4n7ylmgaet" path="res://scenes/wall.tscn" id="1_2q6dc"]
+[ext_resource type="Script" uid="uid://dbm5rfl83uk5v" path="res://scripts/level.gd" id="1_w8frs"]
+[ext_resource type="PackedScene" uid="uid://bk5bmktpb8y3u" path="res://scenes/panel_border.tscn" id="2_w7c3h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rd3vj"]
 size = Vector3(47, 0.12475586, 47)
@@ -15,7 +16,19 @@ size = Vector3(47, 0.13647461, 47)
 [sub_resource type="BoxShape3D" id="BoxShape3D_bbe8a"]
 size = Vector3(46, 0.12475586, 47)
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2q6dc"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_0xm2m"]
+sky_material = SubResource("ProceduralSkyMaterial_2q6dc")
+
+[sub_resource type="Environment" id="Environment_w7c3h"]
+background_mode = 2
+sky = SubResource("Sky_0xm2m")
+
 [node name="Level" type="Node3D" unique_id=1775775608]
+script = ExtResource("1_w8frs")
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=1708958667]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07065928, 0)
@@ -77,53 +90,11 @@ shape = SubResource("BoxShape3D_bbe8a")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area-Wall4" unique_id=914300785]
 mesh = SubResource("BoxMesh_4endv")
 
-[node name="Wall Holder" type="Node3D" parent="." unique_id=1495925258]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=177600275]
+environment = SubResource("Environment_w7c3h")
 
-[node name="Wall" parent="Wall Holder" unique_id=605924003 instance=ExtResource("1_2q6dc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -1, -0.45416832)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1235862753]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
 
-[node name="Wall2" parent="Wall Holder" unique_id=595214451 instance=ExtResource("1_2q6dc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -1, -4.4541683)
-
-[node name="Wall3" parent="Wall Holder" unique_id=1176282731 instance=ExtResource("1_2q6dc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -1, -4.4541683)
-
-[node name="Wall4" parent="Wall Holder" unique_id=1506517465 instance=ExtResource("1_2q6dc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -1, -4.4541683)
-
-[node name="Wall5" parent="Wall Holder" unique_id=1489616177 instance=ExtResource("1_2q6dc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, -1, -6.4541683)
-
-[node name="Wall6" parent="Wall Holder" unique_id=1548303912 instance=ExtResource("1_2q6dc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, -3, -6.4541683)
-
-[node name="Wall7" parent="Wall Holder" unique_id=1913043946 instance=ExtResource("1_2q6dc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, -1, -6.4541683)
-
-[node name="Wall8" parent="Wall Holder" unique_id=1384373981 instance=ExtResource("1_2q6dc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, -3, -6.4541683)
-
-[node name="Wall9" parent="Wall Holder" unique_id=680357639 instance=ExtResource("1_2q6dc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -0.46428013)
-
-[node name="Wall10" parent="Wall Holder" unique_id=1829984167 instance=ExtResource("1_2q6dc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -1, -0.46428013)
-
-[node name="Wall11" parent="Wall Holder" unique_id=1927989131 instance=ExtResource("1_2q6dc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -3, -0.46428013)
-
-[node name="Wall12" parent="Wall Holder" unique_id=1792521944 instance=ExtResource("1_2q6dc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -1, -8.46428)
-
-[node name="Wall13" parent="Wall Holder" unique_id=786762811 instance=ExtResource("1_2q6dc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, -3, 1.5357199)
-
-[node name="Wall14" parent="Wall Holder" unique_id=1413390984 instance=ExtResource("1_2q6dc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, -3, 1.5357199)
-
-[node name="Wall15" parent="Wall Holder" unique_id=168968635 instance=ExtResource("1_2q6dc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, -1, 1.5357199)
-
-[node name="Wall16" parent="Wall Holder" unique_id=1440114182 instance=ExtResource("1_2q6dc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14, -3, 1.5357199)
+[node name="PanelBorder" parent="." unique_id=2057963673 instance=ExtResource("2_w7c3h")]
