@@ -18,7 +18,7 @@ class_name PlayerController extends CharacterBody3D
 @export var player_health := 3
 @export_category("Weapons")
 @export var starting_ammo := 10
-@export var attack_force := 500
+@export var attack_force := 75
 
 # Privates
 var _input_dir : Vector2 = Vector2.ZERO

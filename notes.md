@@ -89,14 +89,15 @@ scenes:
 
 - david:
 	- [x] enemy attack cooldown
-	- [] enemy feedback on attack
+	- [x] enemy feedback on attack
 	- [x] player health
 	- [x] enemy health
 	- [ ] gun refinements
-		  - [ ] model
-		  - [ ] raycast visible
-		  - [ ] aiming
-		  - [ ] ammo count on the gun
+		- [ ] model
+		- [ ] raycast visible
+		- [ ] aiming
+		- [ ] ammo count on the gun
+		- [] Bigger enemy hitbox
 
 ## milestone 3
 

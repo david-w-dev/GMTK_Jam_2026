@@ -40,3 +40,6 @@ shape = SubResource("CapsuleShape3D_md0e3")
 
 [node name="AttackCooldown" type="Timer" parent="." unique_id=893138283]
 one_shot = true
+
+[node name="DamageCooldown" type="Timer" parent="." unique_id=1569972379]
+one_shot = true
