@@ -40,7 +40,7 @@ func end_round(outcome: RoundOutcome) -> void:
 	round_ended.emit(outcome)
 
 
-func _ready() -> void:	
+func _ready() -> void:
 	assert(params != null, "GameMaster added with null params")
 	# Create walls
 	for pos in CreateWallLayout.get_random_walls():

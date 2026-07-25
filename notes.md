@@ -89,8 +89,8 @@ scenes:
 
 - david:
 	- [x] enemy attack cooldown
-- [] enemy feedback on attack
-	- [] player health
+	- [] enemy feedback on attack
+	- [x] player health
 	- [x] enemy health
 	- [ ] gun refinements
 		  - [ ] model

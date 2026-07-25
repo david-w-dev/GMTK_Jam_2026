@@ -2,13 +2,6 @@
 class_name PlacePanels
 extends EditorScript
 
-const RADIUS: float = 22.0
-const NUM_PANELS: int = 60
-
-## Get the node name for the panel with index `idx` (0-indexed)
-static func panel_name(idx: int) -> String:
-	return "panel_%d" % idx
-
 func _run() -> void:
 	var scene = EditorInterface.get_edited_scene_root()
 	if scene.name != "PanelBorder":
@@ -21,13 +14,13 @@ func _run() -> void:
 			scene.remove_child(node)
 
 	var panel_scene = load("res://scenes/light_panel.tscn")
-	for i in range(NUM_PANELS):
+	for i in range(PanelUtils.NUM_PANELS):
 		var panel = panel_scene.instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
-		panel.name = panel_name(i)
+		panel.name = PanelUtils.panel_name(i)
 		scene.add_child(panel)
 		panel.set_owner(scene)
-		var angle: float = 2 * PI * i / NUM_PANELS
-		panel.position = RADIUS * Vector3.FORWARD.rotated(Vector3.UP, angle)
+		var angle: float = 2 * PI * i / PanelUtils.NUM_PANELS
+		panel.position = PanelUtils.RADIUS * Vector3.FORWARD.rotated(Vector3.UP, angle)
 		panel.rotation.y = angle
 		EditorInterface.mark_scene_as_unsaved()
-	print("placed %d panels at radius %f" % [NUM_PANELS, RADIUS])
+	print("placed %d panels at radius %f" % [PanelUtils.NUM_PANELS, PanelUtils.RADIUS])
